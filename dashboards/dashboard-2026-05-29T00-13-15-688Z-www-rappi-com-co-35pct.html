@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard de ofertas Rappi</title>
+  <style>
+    :root { --bg: #f6f8f7; --panel: #ffffff; --text: #17211b; --muted: #6b7280; --green: #16a34a; --red: #ef4444; --line: #e5e7eb; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, sans-serif; background: var(--bg); color: var(--text); }
+    .hero { padding: 34px 24px 24px; background: linear-gradient(135deg, #102a1c, #176b3a 55%, #21c16b); color: white; }
+    .wrap { max-width: 1180px; margin: 0 auto; }
+    .eyebrow { opacity: .78; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; font-size: 12px; }
+    h1 { margin: 8px 0 10px; font-size: clamp(30px, 5vw, 54px); line-height: 1; letter-spacing: 0; }
+    .hero p { margin: 0; opacity: .9; }
+    .stats { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin-top: 24px; }
+    .stat { background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.2); border-radius: 8px; padding: 14px; backdrop-filter: blur(8px); }
+    .stat strong { display: block; font-size: 26px; line-height: 1; }
+    .stat span { display: block; margin-top: 6px; opacity: .8; font-size: 13px; }
+    .toolbar { position: sticky; top: 0; z-index: 2; background: rgba(246,248,247,.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+    .toolbar-inner { max-width: 1180px; margin: 0 auto; padding: 14px 24px; display: grid; grid-template-columns: 1fr auto auto; gap: 10px; align-items: center; }
+    input, select, button { border: 1px solid var(--line); background: white; border-radius: 8px; min-height: 42px; padding: 0 12px; font: inherit; }
+    button { cursor: pointer; font-weight: 700; color: #14532d; }
+    .grid { max-width: 1180px; margin: 0 auto; padding: 22px 24px 42px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .offer-card { position: relative; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; box-shadow: 0 10px 30px rgba(15,23,42,.06); }
+    .badge { position: absolute; top: 12px; left: 12px; z-index: 1; background: var(--red); color: white; border-radius: 999px; padding: 8px 10px; font-weight: 900; font-size: 13px; }
+    .media { height: 200px; display: grid; place-items: center; background: radial-gradient(circle at 50% 20%, #ffffff, #eefcf3); border-bottom: 1px solid var(--line); padding: 18px; }
+    .media img { width: 100%; height: 164px; object-fit: contain; filter: drop-shadow(0 10px 18px rgba(15, 23, 42, .10)); }
+    .image-fallback { display: none; width: 100%; height: 164px; border: 1px dashed #bbf7d0; border-radius: 8px; place-items: center; background: linear-gradient(135deg, #f0fdf4, #ffffff); color: #166534; text-align: center; }
+    .image-fallback span { display: block; font-size: 46px; font-weight: 900; line-height: 1; }
+    .image-fallback small { display: block; margin-top: 8px; color: #15803d; font-weight: 800; }
+    .media.missing-image .image-fallback { display: grid; }
+    .card-body { padding: 16px; }
+    h2 { margin: 0 0 14px; font-size: 16px; line-height: 1.25; min-height: 42px; }
+    h2 a { color: inherit; text-decoration: none; }
+    h2 a:hover { text-decoration: underline; }
+    .prices { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+    .current { font-size: 24px; font-weight: 900; color: #14532d; }
+    .old { color: var(--muted); text-decoration: line-through; }
+    .saving { margin-top: 8px; color: var(--green); font-weight: 800; }
+    .meta-row { margin-top: 14px; display: flex; justify-content: space-between; gap: 10px; color: var(--muted); font-size: 12px; border-top: 1px solid var(--line); padding-top: 12px; }
+    .empty { display: none; max-width: 1180px; margin: 30px auto; padding: 24px; color: var(--muted); }
+    @media (max-width: 900px) { .stats { grid-template-columns: repeat(2, 1fr); } .toolbar-inner { grid-template-columns: 1fr; } .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 620px) { .hero { padding: 28px 16px 20px; } .grid { grid-template-columns: 1fr; padding: 16px; } .toolbar-inner { padding: 12px 16px; } .stats { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Rappi ofertas en vivo</div>
+      <h1>Ofertas en Éxito Compras en Línea</h1>
+      <p>Escaneo realizado el 28/5/2026, 7:13:15 p. m. desde https://www.rappi.com.co/tiendas/900055133-hiper/ofertas</p>
+      <div class="stats">
+        <div class="stat"><strong>35</strong><span>Detectadas</span></div>
+        <div class="stat"><strong>3</strong><span>Exportadas</span></div>
+        <div class="stat"><strong>41%</strong><span>Mayor descuento</span></div>
+        <div class="stat"><strong>38%</strong><span>Promedio</span></div>
+        <div class="stat"><strong>$ 22.080</strong><span>Ahorro potencial</span></div>
+      </div>
+    </div>
+  </section>
+  <div class="toolbar">
+    <div class="toolbar-inner">
+      <input id="search" type="search" placeholder="Buscar producto...">
+      <select id="minDiscount">
+        <option value="0">Todos los descuentos</option>
+        <option value="25">25% o más</option>
+        <option value="30">30% o más</option>
+        <option value="40">40% o más</option>
+      </select>
+      <button id="sort">Orden: mayor descuento</button>
+    </div>
+  </div>
+  <main id="grid" class="grid">
+      <article class="offer-card" data-discount="41" data-name="fab detergente líquido ultra flash">
+        <div class="badge">41% OFF</div>
+        <div class="media "><img src="https://images.rappi.com/products/ff94065c-ea67-4669-9991-1945d014ce15.png?d=300x300&amp;e=webp&amp;q=10" alt="Fab Detergente Líquido Ultra Flash" loading="lazy" onerror="this.closest('.media').classList.add('missing-image'); this.remove();"><div class="image-fallback"><span>F</span><small>Sin foto disponible</small></div></div>
+        <div class="card-body">
+          <h2><a href="https://www.rappi.com.co/p/fab-detergente-liquido-ultra-flash-3837701">Fab Detergente Líquido Ultra Flash</a></h2>
+          <div class="prices">
+            <span class="current">$ 20.030</span>
+            <span class="old">$ 33.950</span>
+          </div>
+          <div class="saving">Ahorras $ 13.920</div>
+          <div class="meta-row">
+            <span>Ofertas en Éxito Compras en Línea</span>
+            <span>28/5/2026, 7:13:15 p. m.</span>
+          </div>
+        </div>
+      </article>
+      <article class="offer-card" data-discount="38" data-name="dux galletas tipo sándwich con crema sabor a queso blanco">
+        <div class="badge">38% OFF</div>
+        <div class="media "><img src="https://images.rappi.com/products/2f09e3a0-fc27-4867-b021-015132b04e4d.jpg?d=900x750&amp;e=webp&amp;q=30" alt="Dux Galletas Tipo Sándwich con Crema Sabor a Queso Blanco" loading="lazy" onerror="this.closest('.media').classList.add('missing-image'); this.remove();"><div class="image-fallback"><span>D</span><small>Sin foto disponible</small></div></div>
+        <div class="card-body">
+          <h2><a href="https://www.rappi.com.co/p/dux-galletas-tipo-sandwich-con-crem-97679">Dux Galletas Tipo Sándwich con Crema Sabor a Queso Blanco</a></h2>
+          <div class="prices">
+            <span class="current">$ 5.970</span>
+            <span class="old">$ 9.630</span>
+          </div>
+          <div class="saving">Ahorras $ 3.660</div>
+          <div class="meta-row">
+            <span>Ofertas en Éxito Compras en Línea</span>
+            <span>28/5/2026, 7:13:15 p. m.</span>
+          </div>
+        </div>
+      </article>
+      <article class="offer-card" data-discount="36" data-name="jabón johnson's avena tripack 330 gr">
+        <div class="badge">36% OFF</div>
+        <div class="media "><img src="https://images.rappi.com/products/6d11cd8c-2288-4ac7-b9fe-7d7e5630ba46.jpg?d=900x750&amp;e=webp&amp;q=30" alt="Jabón JOHNSON'S Avena TRIPACK 330 GR" loading="lazy" onerror="this.closest('.media').classList.add('missing-image'); this.remove();"><div class="image-fallback"><span>J</span><small>Sin foto disponible</small></div></div>
+        <div class="card-body">
+          <h2><a href="https://www.rappi.com.co/p/jabon-johnsons-avena-tripack-330-gr-21970">Jabón JOHNSON'S Avena TRIPACK 330 GR</a></h2>
+          <div class="prices">
+            <span class="current">$ 8.000</span>
+            <span class="old">$ 12.500</span>
+          </div>
+          <div class="saving">Ahorras $ 4.500</div>
+          <div class="meta-row">
+            <span>Ofertas en Éxito Compras en Línea</span>
+            <span>28/5/2026, 7:13:15 p. m.</span>
+          </div>
+        </div>
+      </article></main>
+  <div id="empty" class="empty">No hay ofertas que coincidan con los filtros.</div>
+  <script>
+    const grid = document.getElementById('grid');
+    const cards = [...document.querySelectorAll('.offer-card')];
+    const search = document.getElementById('search');
+    const minDiscount = document.getElementById('minDiscount');
+    const sort = document.getElementById('sort');
+    const empty = document.getElementById('empty');
+    let desc = true;
+    function render() {
+      const query = search.value.trim().toLowerCase();
+      const min = Number(minDiscount.value);
+      let visible = cards.filter(card => card.dataset.name.includes(query) && Number(card.dataset.discount) >= min);
+      visible.sort((a, b) => desc ? Number(b.dataset.discount) - Number(a.dataset.discount) : Number(a.dataset.discount) - Number(b.dataset.discount));
+      grid.replaceChildren(...visible);
+      empty.style.display = visible.length ? 'none' : 'block';
+      sort.textContent = desc ? 'Orden: mayor descuento' : 'Orden: menor descuento';
+    }
+    search.addEventListener('input', render);
+    minDiscount.addEventListener('change', render);
+    sort.addEventListener('click', () => { desc = !desc; render(); });
+    render();
+  </script>
+</body>
+</html>
